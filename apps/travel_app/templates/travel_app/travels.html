@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        {% if messages %} 
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %} 
+        {% endif %}
+    </pre>
+    <div class='header'>
+        <h2 class='inline'>Welcome, {{ user }}!</h2>
+        <a class='inline' href="/logout">Logout</a>
+    </div>
+    Your Trip Schedules
+    <table>
+        <tr>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Plan </th>
+        </tr>
+        {% for travel in travel %}
+        <tr>
+            <td>
+                <a href="/travels/destination/{{travel.id}}"> {{travel.destination}} </a>
+            </td>
+            <td>
+                {{travel.date_from}}
+            </td>
+            <td>
+                {{travel.date_to}}
+            </td>
+            <td>
+                {{travel.description}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    Other user travel plan
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Do you want to join?</th>
+        </tr>
+        {% for item in otherTravel %}
+        <tr>
+            <td>
+                {{item.user.name}}
+            </td>
+            <td>
+                <a href="/travels/destination/{{item.travel.id}}"> {{item.travel.destination}} </a>
+            </td>
+            <td>
+                {{item.travel.date_from}}
+            </td>
+            <td>
+                {{item.travel.date_to}}
+            </td>
+            <td>
+                <a href="/travels/join/{{item.travel.id}}"> Join </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/travels/add">Add Travel Plan</a>
+</body>
+
+</html>

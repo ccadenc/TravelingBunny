@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        {% if messages %} 
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %} 
+        {% endif %}
+    </pre>
+    <div class='header'>
+        <a href="/travels">Home | </a>
+        <a href="/logout">Logout</a>
+    </div>
+    <h2>Add a trip</h2>
+    <form action='/travels/create' method='POST'>
+        {% csrf_token %} Destination:
+        <input type="text" name="destination" required> Description:
+        <input type="text" name="description" required> Travel Date From:
+        <input type="date" name="travel_from" required> Travel Date till:
+        <input type="date" name="travel_till" required>
+        <input type="submit" value="Add">
+    </form>
+</body>
+
+</html>

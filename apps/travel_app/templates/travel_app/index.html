@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+</head>
+
+<body>
+    <pre>
+    {% if messages %} 
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %} 
+    {% endif %}
+    </pre>
+    <h1>Register here if you do not have an account:</h1>
+    <form action='/register' method='POST'>
+        {% csrf_token %}
+        <label for="name">Name:
+            <input type="text" name="name">
+        </label>
+        <br>
+        <label for="alias">Username:
+            <input type="text" name="alias">
+        </label>
+        <br>
+
+        <label for="password">Password:
+            <input type="text" name="password">
+        </label>
+        <br> *Password should be at least 8 characters
+        <br>
+        <label for="pass_confirm">Confirm Password:
+            <input type="text" name="confirm_pass">
+        </label>
+        <br>
+        <input type="submit" value="Register">
+    </form>
+    <h1>Already Have an Account? Login Here:</h1>
+    <form action='/login' method='POST'>
+        {% csrf_token %}
+        <label for="username">Username:
+            <input type="text" name="username">
+        </label>
+        <label for="password">Password:
+            <input type="text" name="password">
+        </label>
+        <input type="submit" value="Login">
+    </form>
+</body>
+
+</html>
